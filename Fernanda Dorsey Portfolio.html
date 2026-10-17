@@ -1,0 +1,493 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Fernanda Dorsey Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: fixed left nav with collapsible Skills and Experience groups, content pane with tile grids on home and detail pages per skill and job. Palette: cool grays with one working green. */
+:root {
+  --bg: #f3f5f4;
+  --surface: #ffffff;
+  --side: #e9edeb;
+  --ink: #18201c;
+  --muted: #55645c;
+  --line: #d3dbd7;
+  --accent: #1b7a4b;
+  --accent-ink: #ffffff;
+  --accent-soft: #e0f0e7;
+  --font-body: "Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111715; --surface: #18201d; --side: #151c19; --ink: #e5ece8; --muted: #9aa8a0;
+    --line: #28332e; --accent: #4cc38a; --accent-ink: #0c1411; --accent-soft: #1b3228;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111715; --surface: #18201d; --side: #151c19; --ink: #e5ece8; --muted: #9aa8a0;
+  --line: #28332e; --accent: #4cc38a; --accent-ink: #0c1411; --accent-soft: #1b3228;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--ink); font-family: var(--font-body); font-size: 16px; line-height: 1.6; }
+a { color: inherit; }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.shell { display: grid; grid-template-columns: 296px minmax(0, 1fr); min-height: 100vh; }
+
+/* Side nav */
+.side { background: var(--side); border-right: 1px solid var(--line); position: sticky; top: 0; align-self: start; max-height: 100vh; overflow-y: auto; padding-block: 24px; padding-left: max(20px, env(safe-area-inset-left, 0px)); padding-right: 16px; }
+.brand { display: block; text-decoration: none; padding-bottom: 20px; border-bottom: 1px solid var(--line); margin-bottom: 14px; }
+.brand b { display: block; font-size: 19px; font-weight: 700; letter-spacing: -0.01em; }
+.brand span { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.home-link { display: block; padding: 7px 10px; border-radius: 4px; text-decoration: none; font-size: 14px; color: var(--muted); }
+.grp { margin-top: 10px; }
+.grp-btn { display: flex; align-items: center; gap: 10px; width: 100%; background: none; border: 0; padding: 8px 10px; cursor: pointer; text-align: left; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 500; border-radius: 4px; }
+.grp-btn .sign { display: inline-grid; place-items: center; width: 18px; height: 18px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; font-size: 14px; line-height: 1; }
+.grp ul { list-style: none; margin: 2px 0 0; padding: 0 0 0 18px; }
+.grp ul[hidden] { display: none; }
+.nav-link { display: block; padding: 6px 10px; border-radius: 4px; text-decoration: none; font-size: 14px; color: var(--muted); border-left: 2px solid transparent; }
+.nav-link:hover, .home-link:hover, .grp-btn:hover { background: var(--accent-soft); color: var(--ink); }
+.nav-link[aria-current="page"], .home-link[aria-current="page"] { color: var(--ink); background: var(--accent-soft); border-left-color: var(--accent); font-weight: 600; }
+.home-link[aria-current="page"] { border-left: 2px solid var(--accent); }
+
+.topbar { display: none; }
+
+/* Content */
+.main { min-width: 0; padding-block: 48px 72px; padding-left: max(32px, env(safe-area-inset-left, 0px)); padding-right: max(32px, env(safe-area-inset-right, 0px)); }
+.wrap { max-width: 980px; }
+.eyebrow { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin: 0 0 10px; }
+h1 { font-size: clamp(32px, 4.4vw, 48px); line-height: 1.1; letter-spacing: -0.02em; margin: 0 0 14px; font-weight: 700; text-wrap: balance; }
+h2 { font-size: 22px; line-height: 1.25; margin: 0; font-weight: 650; letter-spacing: -0.01em; }
+h3 { font-size: 16px; margin: 0 0 4px; font-weight: 650; }
+.lede { font-size: 18px; color: var(--muted); max-width: 66ch; margin: 0 0 20px; }
+.facts { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--font-mono); font-size: 12.5px; color: var(--muted); padding: 12px 0; border-block: 1px solid var(--line); margin: 0 0 36px; }
+.facts b { color: var(--ink); font-weight: 500; }
+
+details.sec { border-top: 1px solid var(--line); padding-block: 8px 20px; margin-top: 8px; }
+details.sec > summary { list-style: none; cursor: pointer; display: flex; align-items: center; gap: 12px; padding: 10px 0; }
+details.sec > summary::-webkit-details-marker { display: none; }
+details.sec > summary .sign { display: inline-grid; place-items: center; width: 22px; height: 22px; border: 1px solid var(--accent); color: var(--accent); border-radius: 3px; font-size: 16px; line-height: 1; flex: none; }
+details.sec > summary .sign::before { content: "+"; }
+details.sec[open] > summary .sign::before { content: "\2212"; }
+details.sec > summary .count { margin-left: auto; font-family: var(--font-mono); font-size: 12px; color: var(--muted); }
+
+.tiles { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; margin-top: 10px; }
+.tile { display: flex; flex-direction: column; gap: 8px; background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 18px; text-decoration: none; min-width: 0; transition: border-color .15s, background .15s; }
+.tile:hover { border-color: var(--accent); }
+.tile .kicker { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+.tile h3 { font-size: 18px; margin: 0; }
+.tile p { margin: 0; color: var(--muted); font-size: 14.5px; }
+.tile .go { margin-top: auto; padding-top: 6px; font-family: var(--font-mono); font-size: 12px; color: var(--ink); }
+.tile:hover .go { color: var(--accent); }
+
+.crumbs { font-family: var(--font-mono); font-size: 12px; color: var(--muted); margin-bottom: 18px; }
+.crumbs a { text-decoration: none; color: var(--muted); }
+.crumbs a:hover { color: var(--accent); }
+
+ul.plain { margin: 6px 0 0; padding: 0; list-style: none; display: grid; gap: 8px; }
+ul.plain li { padding-left: 18px; position: relative; max-width: 74ch; }
+ul.plain li::before { content: ""; position: absolute; left: 0; top: 0.72em; width: 8px; height: 1px; background: var(--accent); }
+.cards { display: grid; gap: 14px; margin-top: 10px; }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 18px 20px; min-width: 0; }
+.card .where { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+.card .where a { color: var(--accent); text-decoration: none; }
+.card .where a:hover { text-decoration: underline; }
+.card p { margin: 0 0 8px; max-width: 74ch; }
+.card .out { margin: 10px 0 0; padding: 8px 12px; background: var(--accent-soft); border-radius: 3px; font-size: 14.5px; }
+.card .out b { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); margin-right: 8px; }
+
+.value { display: grid; gap: 10px; margin: 6px 0 22px; }
+.value div { background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 14px 18px; font-size: 17px; font-weight: 500; }
+.group { margin-top: 14px; }
+.group h3 { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); font-weight: 500; }
+.item { padding: 10px 0; border-bottom: 1px solid var(--line); max-width: 78ch; }
+.item:last-child { border-bottom: 0; }
+.item b { font-weight: 650; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+.chip { font-family: var(--font-mono); font-size: 12px; padding: 5px 10px; border: 1px solid var(--line); border-radius: 3px; text-decoration: none; background: var(--surface); }
+.chip:hover { border-color: var(--accent); color: var(--accent); }
+
+@media (max-width: 860px) {
+  .shell { grid-template-columns: minmax(0, 1fr); }
+  .topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--side); border-bottom: 1px solid var(--line); padding-block: 10px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .topbar b { font-size: 16px; }
+  .menu-btn { background: var(--surface); border: 1px solid var(--accent); color: var(--accent); border-radius: 4px; padding: 6px 12px; font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.06em; text-transform: uppercase; cursor: pointer; }
+  body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--side); }
+  .side { display: none; position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--line); padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .side.open { display: block; }
+  .main { padding-block: 28px 56px; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+  .lede { font-size: 17px; }
+}
+@media (prefers-reduced-motion: reduce) { .tile { transition: none; } }
+</style>
+
+<div class="topbar"><b>Fernanda Dorsey</b><button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="side">Menu</button></div>
+<div class="shell">
+  <nav class="side" id="side" aria-label="Site"></nav>
+  <main class="main" id="main"><div class="wrap" id="view"></div></main>
+</div>
+
+<script>
+var SKILLS = [
+  {
+    id: 'strategy', name: 'Product Strategy', kicker: 'Vision / Research / Business cases',
+    blurb: 'Turning an unclear request into a documented decision and a path forward.',
+    lede: 'Vision, market and user research, PRDs, roadmaps, and business cases tied to KPIs and OKRs. The common thread is moving from ambiguity to a decision people can act on.',
+    does: [
+      'Define product vision and strategy from market and user research',
+      'Write PRDs and keep roadmaps aligned to business goals, KPIs, and OKRs',
+      'Build business cases from financial and user data, using AI to move value from potential to realized',
+      'Reframe assumptions into testable pilots with clear go or pivot gates'
+    ],
+    examples: [
+      { job: 'accesso', title: 'accessoHub reframed as an evidence-based pilot', body: 'Took an executive-driven assumption and turned it into a customer-driven initiative with a Product Vision and Strategy document, five personas, an MVP scope, and a 12-week pilot with a go/pivot decision gate.', out: 'A documented position leadership could decide on, instead of an assumption.' },
+      { job: 'j2', title: 'Proof of concept for a new feature', body: 'Identified a feature opportunity and secured executive approval for a proof of concept. Worked with architects, system administrators, and network engineers on CAPEX, OPEX, and capacity, with support on call volume and with marketing and sales on go-to-market. Validated the concept end to end.', out: 'Implementation was placed on hold on legal guidance, and the evidence made that call clear.' },
+      { job: 'earthlink', title: 'Vision and business cases for six search products', body: 'Defined vision, strategy, and business cases for Portal Web Search, Local Search, Toolbars, Scamblocker, Error Search, and Internal Enterprise Search, and built partnerships with Google, Yahoo, McAfee, and Expedia.', out: 'Over $89M in search revenue under management.' }
+    ]
+  },
+  {
+    id: 'delivery', name: 'Delivery', kicker: 'Agile / Kanban / Waterfall / Shape Up',
+    blurb: 'Prioritized backlogs, testable stories, and releases that land, on any process.',
+    lede: 'I run delivery with whatever process the team needs. The methods change; the work is the same: a prioritized backlog, stories QA can test, and teams that stay aligned from charter to launch.',
+    does: [
+      'Backlog management and prioritization',
+      'User stories and acceptance criteria written to be testable',
+      'Sprint planning, release planning, and reporting',
+      'Alignment across architects, engineers, QA, finance, legal, marketing, UX, and operations'
+    ],
+    examples: [
+      { job: 'disney', title: 'Digital tickets, zero user-facing issues', body: 'Product owner for an Agile studio covering desktop and two mobile apps. Managed planning, backlog refinement, sprint releases, and reporting while adding features, security fixes, and fraud prevention changes.', out: 'Met the goal of zero user-facing issues through backlog management and continuous integration.' },
+      { job: 'dell', title: 'Windows 11 migration on the Offer Lifecycle Process', body: 'Directed the global Windows 10 to Windows 11 migration for the consumer lines, taking each phase through Ideation, Define, Plan, Develop, Test, Release, and Sustain.', out: 'Disciplined execution at every phase, aligned to Microsoft\'s bi-annual release cycle.' },
+      { job: 'j2', title: 'EU VAT billing compliance', body: 'Drafted the project charter, defined scope and plan, allocated resources, and oversaw execution.', out: 'Delivered on schedule and within budget, mitigating significant regulatory risk.' },
+      { job: 'earthlink', title: '.NET to Java migration for a 9M-user portal', body: 'Led a large, complex enterprise migration of a web portal from .NET to a Java platform.', out: 'Executive recognition for outstanding project performance.' }
+    ]
+  },
+  {
+    id: 'analytics', name: 'Analytics and Experimentation', kicker: 'Forecasting / Testing / Reporting',
+    blurb: 'Data turned into decisions: forecasts, tests, funnels, and attach-rate reporting.',
+    lede: 'Forecasting, experimentation, funnels, and reporting that connect product work to KPIs and OKRs, using Excel, SQL, Power BI, Power Automate, Adobe Analytics, Google Analytics, and Airtable.',
+    does: [
+      'Revenue forecasting and managerial accounting, including ARPU and churn',
+      'A/B and multivariate test programs built on clear hypotheses',
+      'Funnel, attach-rate, and campaign attribution reporting',
+      'Qualitative research paired with quantitative performance data'
+    ],
+    examples: [
+      { job: 'earthlink', title: 'Search testing and forecasting', body: 'Managed search revenue and led forecasting. Ran A/B and multivariate programs that earned top search partner status in Google\'s syndication network.', out: 'Forecasts within plus or minus 2%, click through rate up 7%, queries up over 3%, and roughly $10M or more in incremental revenue.' },
+      { job: 'dell', title: 'Software attach-rate reporting', body: 'Owned the SKU data lifecycle across third party software, including auditing and reporting in Excel, SQL, Power BI, and Power Automate, and reported attach rates across all lines of business and devices.', out: 'Informed go-to-market decisions and contributed to over $100M in revenue growth.' },
+      { job: 'accesso', title: 'GA4 server-side events', body: 'Evaluated four approaches in a spike and confirmed Measurement Protocol. Defined six server-side success events and how to stitch each to the correct GA4 session, with parent app, venue, and language on every event.', out: 'A complete funnel at login, signup, and verification, with behavior segmented across integrating lines of business.' },
+      { job: 'j2', title: 'ARPU and churn', body: 'Applied managerial accounting principles across eVoice and OneBox.', out: 'ARPU growth and lower churn across both product lines.' }
+    ]
+  },
+  {
+    id: 'technical', name: 'Technical Depth', kicker: 'Identity / APIs / Cloud / Platforms',
+    blurb: 'Fluent enough to work at the seam between product strategy and engineering.',
+    lede: 'Enough depth to collaborate with architects, backend and frontend developers, and DevSecOps, and to keep product requirements separate from implementation detail.',
+    does: [
+      'Identity and security: OAuth 2.1, OIDC, JWT, PKCE, WebAuthn/FIDO2, and NIST SP 800-63B',
+      'APIs, Postman, SQL, cloud infrastructure, and DevSecOps collaboration',
+      'E-commerce, data and payment gateways, and platform migrations',
+      'A consistent line between the PRD and the TRD'
+    ],
+    examples: [
+      { job: 'accesso', title: 'Passkeys and multi-tenant identity', body: 'Specified FIDO2/WebAuthn passkeys configured per tenant, and a multi-tenancy schema redesign with a three-tier configuration model across tenant, venue, and OAuth2 client.', out: 'A platform reusable across lines of business, with isolated data and configuration per tenant.' },
+      { job: 'accesso', title: 'Pen test triage', body: 'Sorted penetration test findings into real vulnerabilities, configuration issues, and invalid tests, and wrote the story and acceptance criteria for deriving privileges from validated token claims only.', out: 'Weaknesses found early, with less rework and fewer last-minute approval blockers.' },
+      { job: 'disney', title: 'Serverless internal catalog', body: 'Managed the internal digital tickets product catalog on AWS Lambda, from requirements and feature design through data migration.', out: 'Faster content changes at lower development cost.' },
+      { job: 'earthlink', title: 'DNS farm for Error Search', body: 'Worked with DevOps and system administrators to define and purchase servers, install redirection software, and migrate users.', out: 'Over $18M in incremental revenue.' }
+    ]
+  },
+  {
+    id: 'ai', name: 'AI-Enabled Development', kicker: 'Discovery / PRD gate / MCP',
+    blurb: 'A repeatable AI process with controls, gated by the PRD before engineering.',
+    lede: 'AI works inside a product process with built-in checks. Discovery and PRDs are AI-assisted and reviewed, and the approved PRD is the gate before AI-accelerated engineering begins.',
+    does: [
+      'AI-assisted discovery, written up in Confluence',
+      'PRD co-writing and review skills that check for technical drift, testability, and consistency',
+      'PRDs kept in Git under pull request review, as the gate for agentic, accelerated engineering with Claude Code',
+      'MCP across Jira, Confluence, Figma, and Microsoft 365 to keep requirements, tickets, designs, and docs in sync',
+      'AI applied to financial and user data to build business cases that turn potential value into realized value'
+    ],
+    examples: [
+      { job: 'accesso', title: 'Passkeys, from research to PRD', body: 'Wrote a research doc on technical and security implications, built an interactive click-through, and used the review skills to narrow 13 open questions to 5 blocking ones, most of which were resolved.', out: 'A reviewable PRD that was merged and published through pull request review.' },
+      { job: 'accesso', title: 'Accessibility audit by code review', body: 'Ran a static code audit of the sign-in components, separating components already handled by the UI library from confirmed gaps, and published the results to Confluence.', out: 'A PRD with a clear responsibility boundary between UX and engineering owners.' },
+      { job: 'accesso', title: 'A skills library for the product process', body: 'Built review and co-writing skills (prd-review, prd-cowrite, prd-walkthrough, thinking-partner, br-discovery, br-review) and wrote "The Missing Piece," arguing that product needs its own AI process alongside the engineering pipeline.', out: 'The same pipeline repeated across magic links, passkeys, localization, and accessibility.' }
+    ]
+  },
+  {
+    id: 'design', name: 'Design and Modeling', kicker: 'Prototypes / Flows / UML',
+    blurb: 'AI-built prototypes, user flows, and models that align UX, engineering, and stakeholders.',
+    lede: 'Clear artifacts for unclear problems: interactive prototypes, user flows, use case models, and process diagrams, built in whatever tools a team prefers.',
+    does: [
+      'AI-built interactive prototypes tied to the design system, with Claude and Figma via MCP',
+      'User flows and process diagrams in Miro, Lucidchart, Visio, and Draw.io',
+      'Use case modeling in UML',
+      'Partnering with UX on research: focus groups, interviews, shadowing, and usability testing'
+    ],
+    examples: [
+      { job: 'accesso', title: 'Interactive click-throughs with owner tags', body: 'Built interactive HTML prototypes for passkey registration and returning sign-in, and wireframes for magic links, on the accesso design system. Each screen is tagged by who owns it: accessoID, the OS, or the parent app.', out: 'Stakeholders react to a working flow, and ownership is settled before engineering starts.' },
+      { job: 'j2', title: 'Research that drives the backlog', body: 'Partnered with UX on focus groups, feedback analysis, on-site interviews, user shadowing, and usability testing.', out: 'Qualitative findings shaped backlog priorities and product roadmaps.' }
+    ]
+  }
+];
+
+var JOBS = [
+  {
+    id: 'accesso', org: 'accesso', role: 'Product Manager, Global Services', dates: 'Apr 2025 to Present', where: 'Remote',
+    blurb: 'Shared Services portfolio across 12+ services: accessoID, SSM, RTDi, SMS, Email, Webhooks, and Fiscalization.',
+    summary: 'Owns the Shared Services portfolio as both PM and PO, from discovery and PRDs through delivery and stakeholder alignment. Has been the accessoID PM since the initiative started.',
+    value: [
+      'Reduced sign-in friction and compliance risk with accessoID passkeys, magic links, SMS MFA, accessibility, and localization',
+      'Removed developer dependency from client onboarding and configuration with SSM and RTDi self-service tooling',
+      'Turned accessoHub into an evidence-based 12-week pilot with a go/pivot gate'
+    ],
+    groups: [
+      { name: 'accessoID: user-facing', items: [
+        ['Passkeys', 'FIDO2/WebAuthn registration and sign-in per tenant. Removes the shared secret, so there is nothing to phish, breach, or forget.'],
+        ['Magic links', 'A passwordless option for guest checkout and one-time event access, with no disruption to registered users.'],
+        ['SMS MFA', 'SMS as an alternative to email MFA, chosen per tenant, which diversifies MFA channels and supports mobile-first users.'],
+        ['Password validation', 'Real-time strength feedback built on zxcvbn, aligned with NIST SP 800-63B and replacing legacy composition rules.'],
+        ['Accessibility, WCAG 2.2 AA', 'Baseline and remediation across sign in, sign up, forgot password, and MFA. Lines of business inherit compliance instead of solving it separately.'],
+        ['Localization', 'Language parity with Passport across UI, operator-entered content, and transactional email and SMS.']
+      ]},
+      { name: 'accessoID: internal services', items: [
+        ['Security review of the MVP', 'Threat assessment, code review, and pen test triage across all MVP deliverables.'],
+        ['Outbound federated redirect', 'Detects a tenant\'s partner identity provider and sends guests straight to the partner\'s login. New tenants need no bespoke engineering.'],
+        ['Internal token exchange', 'Users moving between accesso applications do not sign in again.'],
+        ['GA4 server-side events', 'Six success events sent through Measurement Protocol for a complete login and signup funnel.'],
+        ['Multi-tenancy database redesign', 'Tenants and venues with isolated data and configuration.'],
+        ['Redis to Valkey migration', 'Open source cache with role-based access control, so applications reach only the cache data they need.'],
+        ['Next-gen mobile app integration', 'accessoID as the authentication layer for Pro Services\' mobile apps. Perfect North and Timberline released on Feb 23, 2026.']
+      ]},
+      { name: 'SSM: Shared Services Management', items: [
+        ['Platform and applet model', 'One portal where routine configuration changes no longer wait on a developer or a ticket, with validation before saving and secrets handled by the system.'],
+        ['Permission translator', 'A token exchange service that issues short-lived, signed tokens carrying tenant-scoped roles and permissions, so downstream services stop duplicating permission logic.'],
+        ['SMS applet', 'Operations and Implementation teams configure SMS themselves, which means faster client onboarding and fewer configuration errors.']
+      ]},
+      { name: 'RTDi: real-time data integration', items: [
+        ['Client onboarding research', 'Documented every task to onboard a new client, separating external blockers from gaps internal tooling could close, to decide whether self-service tooling is justified.'],
+        ['Disney webhook and authentication', 'Real-time delivery of orders, refunds, and ticket scans with token-based authentication, funded by the client and reusable as a platform feature.'],
+        ['Rev Rec transaction event', 'Assessed a change request for real-time revenue recognition data and determined it is a new feature, not a bug.']
+      ]},
+      { name: 'accessoHub', items: [
+        ['Program and pilot', 'One entry point and one identity for internal and external users across accesso products. Reframed from an executive assumption into a customer-driven initiative with a Product Vision and Strategy document, five personas, MVP scope, and a 12-week pilot.']
+      ]}
+    ],
+    skills: ['strategy', 'delivery', 'analytics', 'technical', 'ai', 'design']
+  },
+  {
+    id: 'dell', org: 'Dell Technologies', role: 'Sr. Advisor, Product Manager | Windows OS & 3rd Party Software', dates: 'Jun 2021 to May 2024', where: 'Remote',
+    blurb: 'Windows 11 Global Transition Lead for the consumer lines of business.',
+    summary: 'Led Dell\'s global Windows 11 transition across the consumer portfolio (XPS, Alienware, Precision), managing the operating system lifecycle, Microsoft partnerships, and third party software integrations in a fast-paced, high-stakes environment.',
+    value: [
+      'Delivered the global Windows 10 to Windows 11 migration across consumer lines',
+      '$8M+ licensing cost reduction through the Microsoft Growth Fund',
+      'Contributed to $100M+ revenue growth by owning third party software SKU data'
+    ],
+    groups: [
+      { name: 'Operating system lifecycle', items: [
+        ['Migration', 'Applied the Offer Lifecycle Process (Ideation, Define, Plan, Develop, Test, Release, Sustain) end to end.'],
+        ['Roadmap', 'Aligned Dell\'s OS roadmap with Microsoft\'s bi-annual release cycle and ongoing feature updates, and delivered regular roadmap updates.'],
+        ['PRDs', 'Authored PRDs defining new features, changes, and fixes.']
+      ]},
+      { name: 'Partnerships', items: [
+        ['Microsoft', 'Managed partnership programs including the Growth Fund and featured device initiatives.'],
+        ['Third party software', 'Worked across Adobe, Microsoft Office, Cyberlink, Foxit AI, and McAfee to deliver updates at scale worldwide.']
+      ]},
+      { name: 'Data and reporting', items: [
+        ['SKU data lifecycle', 'Owned the data across all third party software, including auditing and reporting with Excel, SQL, Power BI, and Power Automate.'],
+        ['Marketing support', 'BI reporting on software attach rates across all lines of business and devices.']
+      ]}
+    ],
+    skills: ['delivery', 'analytics', 'strategy']
+  },
+  {
+    id: 'disney', org: 'The Walt Disney Company', role: 'Product Owner, Digital Tickets', dates: 'Sep 2015 to Sep 2019', where: 'Glendale, CA, hybrid',
+    blurb: 'Parks and Resorts digital tickets across desktop and two mobile apps.',
+    summary: 'Product owner for the digital tickets Agile studio, driving planning, backlog refinement, sprint releases, and reporting. Wrote and managed user stories and acceptance criteria for desktop and two mobile apps (iOS and Android).',
+    value: [
+      'Faster content changes and lower development costs through an AWS Lambda product catalog',
+      'Zero user-facing issues while shipping new features',
+      'Helped launch Fast Pass in the mobile app'
+    ],
+    groups: [
+      { name: 'Product catalog', items: [
+        ['Internal digital tickets catalog', 'Managed requirements gathering, feature design, data migration, and delivery with an Agile team. Lambda functions handled internal processes, data processing, and API backends without managing servers.']
+      ]},
+      { name: 'Quality and cross-team work', items: [
+        ['Zero user-facing issues', 'Reached the goal while adding features, through backlog management and continuous integration cycles.'],
+        ['Partners', 'Worked with principal architects, developers, QA, finance, legal, marketing, producers, UX, consumer insights, BI, and park operations on new features, security fixes, and fraud prevention changes.']
+      ]},
+      { name: 'Enterprise launch', items: [
+        ['Fast Pass in the mobile app', 'PO for Digital Tickets in the launch that let guests choose up to 3 experiences and arrival windows in a theme park.']
+      ]}
+    ],
+    skills: ['delivery', 'technical']
+  },
+  {
+    id: 'j2', org: 'j2 Global', role: 'Sr. Product Manager, Voice | Unified Communications', dates: 'Sep 2012 to Jun 2014', where: 'Hollywood, CA',
+    blurb: 'Real-time communications and mobile SaaS products across 49+ countries and 11M+ subscribers.',
+    summary: 'Managed the lifecycle of core real-time communications and SaaS products, from market analysis, business cases, and user research through vision, strategy, Agile execution, and revenue management.',
+    value: [
+      'Grew ARPU and reduced churn across eVoice (about $78M) and OneBox (about $38M)',
+      'Delivered EU VAT billing compliance on schedule and within budget',
+      'Aligned roadmaps to user needs through ongoing research'
+    ],
+    groups: [
+      { name: 'Products', items: [
+        ['eVoice', 'Owned product strategy and development, generating about $78M in year over year revenue.'],
+        ['OneBox, desktop and mobile', 'Owned strategy across desktop and iOS and Android, generating about $38M year over year, with an external Agile studio sustaining development.']
+      ]},
+      { name: 'Compliance and research', items: [
+        ['EU VAT billing', 'Led from project charter through execution, mitigating significant regulatory risk.'],
+        ['User research with UX', 'Focus groups, feedback analysis, on-site interviews, shadowing, and usability testing to guide the backlog and roadmap.']
+      ]},
+      { name: 'Proof of concept', items: [
+        ['New feature opportunity', 'Secured executive approval and managed development end to end with architects, administrators, and network engineers. The concept was validated, and implementation was put on hold on legal guidance.']
+      ]}
+    ],
+    skills: ['strategy', 'analytics', 'design', 'delivery']
+  },
+  {
+    id: 'earthlink', org: 'Earthlink', role: 'Sr. Product Manager, Search & Ecommerce', dates: 'Jun 2007 to Jun 2012', where: 'Pasadena, CA, hybrid',
+    blurb: 'Search products with over $89M in revenue and strategic partnerships with Google, Yahoo, McAfee, and Expedia.',
+    summary: 'Defined vision, strategy, and business cases for search products and managed the full Agile development cycle in Jira. Products included Portal Web Search, Local Search, Toolbars, Scamblocker, Error Search, and Internal Enterprise Search.',
+    value: [
+      '$10M+ incremental revenue from search testing, reaching top partner status in Google\'s syndication network',
+      '$18M+ incremental revenue from a new DNS farm',
+      'Migrated a 9M+ user portal from .NET to Java, earning executive recognition'
+    ],
+    groups: [
+      { name: 'Revenue and testing', items: [
+        ['Search revenue', 'Managed over $89M and led forecasting with plus or minus 2% accuracy.'],
+        ['A/B and multivariate programs', 'Click through rate up 7% and search queries up over 3%, worth roughly $10M or more in incremental revenue given the traffic volume.']
+      ]},
+      { name: 'Platform work', items: [
+        ['DNS farm', 'Defined and purchased servers, installed redirection software, and migrated users to expand Error Search revenue.'],
+        ['.NET to Java migration', 'Moved a web portal serving over 9M users to a Java platform.']
+      ]},
+      { name: 'Partners and data', items: [
+        ['Strategic partnerships', 'Google, Yahoo, McAfee, and Expedia.'],
+        ['Search data and user testing', 'Managed search data in Excel and SQL, and ran user testing with BI leads to pair qualitative data with performance metrics.']
+      ]}
+    ],
+    skills: ['analytics', 'technical', 'strategy', 'delivery']
+  }
+];
+
+var JOB_BY_ID = {}, SKILL_BY_ID = {};
+JOBS.forEach(function (j) { JOB_BY_ID[j.id] = j; });
+SKILLS.forEach(function (s) { SKILL_BY_ID[s.id] = s; });
+
+var openState = { skills: true, exp: true };
+
+function el(html) { var t = document.createElement('template'); t.innerHTML = html.trim(); return t.content.firstChild; }
+
+function buildNav() {
+  var side = document.getElementById('side');
+  var html = '<a class="brand" href="#home"><b>Fernanda Dorsey</b><span>Product Manager, generalist</span></a>' +
+    '<a class="home-link" href="#home" data-route="home">Home</a>' +
+    group('skills', 'Skills', SKILLS.map(function (s) { return link('skill-' + s.id, s.name); })) +
+    group('exp', 'Experience', JOBS.map(function (j) { return link('job-' + j.id, j.org); }));
+  side.innerHTML = html;
+  Array.prototype.forEach.call(side.querySelectorAll('.grp-btn'), function (b) {
+    b.addEventListener('click', function () {
+      var key = b.getAttribute('data-key');
+      openState[key] = !openState[key];
+      syncGroups();
+    });
+  });
+  syncGroups();
+}
+function link(route, label) { return '<li><a class="nav-link" href="#' + route + '" data-route="' + route + '">' + label + '</a></li>'; }
+function group(key, label, items) {
+  return '<div class="grp"><button class="grp-btn" data-key="' + key + '" aria-expanded="true" aria-controls="g-' + key + '"><span class="sign">−</span>' + label + '</button><ul id="g-' + key + '">' + items.join('') + '</ul></div>';
+}
+function syncGroups() {
+  Array.prototype.forEach.call(document.querySelectorAll('.grp-btn'), function (b) {
+    var key = b.getAttribute('data-key'), open = openState[key];
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.querySelector('.sign').textContent = open ? '−' : '+';
+    document.getElementById('g-' + key).hidden = !open;
+  });
+}
+
+function chipLinks(ids) {
+  return '<div class="chips">' + ids.map(function (id) { var s = SKILL_BY_ID[id]; return '<a class="chip" href="#skill-' + id + '">' + s.name + '</a>'; }).join('') + '</div>';
+}
+
+function sec(title, count, inner) {
+  return '<details class="sec" open><summary><span class="sign"></span><h2>' + title + '</h2>' + (count ? '<span class="count">' + count + '</span>' : '') + '</summary>' + inner + '</details>';
+}
+
+function renderHome() {
+  var skillTiles = SKILLS.map(function (s) {
+    return '<a class="tile" href="#skill-' + s.id + '"><span class="kicker">' + s.kicker + '</span><h3>' + s.name + '</h3><p>' + s.blurb + '</p><span class="go">View details and examples →</span></a>';
+  }).join('');
+  var jobTiles = JOBS.map(function (j) {
+    return '<a class="tile" href="#job-' + j.id + '"><span class="kicker">' + j.dates + '</span><h3>' + j.org + '</h3><p><b>' + j.role.split(' | ')[0] + '</b></p><p>' + j.blurb + '</p><span class="go">View role →</span></a>';
+  }).join('');
+  return '<p class="eyebrow">Portfolio</p><h1>Fernanda Dorsey</h1>' +
+    '<p class="lede">Sr. Technical &amp; Digital Product Manager who has led e-commerce, internet, and IT platform migrations and digital transformation programs across hardware, SaaS, and software. Uses AI across discovery, PRDs, and development, and on financial and user data to build business cases that turn potential value into realized value.</p>' +
+    '<div class="facts"><span><b>$300M+</b> incremental revenue</span><span><b>5</b> product roles</span><span><b>2007</b> to present</span></div>' +
+    sec('Skills', SKILLS.length + ' areas', '<div class="tiles">' + skillTiles + '</div>') +
+    sec('Experience', JOBS.length + ' roles', '<div class="tiles">' + jobTiles + '</div>');
+}
+
+function renderSkill(id) {
+  var s = SKILL_BY_ID[id]; if (!s) return renderHome();
+  var does = '<ul class="plain">' + s.does.map(function (d) { return '<li>' + d + '</li>'; }).join('') + '</ul>';
+  var ex = '<div class="cards">' + s.examples.map(function (e) {
+    var j = JOB_BY_ID[e.job];
+    return '<div class="card"><div class="where"><a href="#job-' + j.id + '">' + j.org + '</a> · ' + j.dates + '</div><h3>' + e.title + '</h3><p>' + e.body + '</p><div class="out"><b>Result</b>' + e.out + '</div></div>';
+  }).join('') + '</div>';
+  return '<div class="crumbs"><a href="#home">Home</a> / Skills / ' + s.name + '</div>' +
+    '<p class="eyebrow">' + s.kicker + '</p><h1>' + s.name + '</h1><p class="lede">' + s.lede + '</p>' +
+    sec('What I do', '', does) +
+    sec('Examples', s.examples.length + ' examples', ex);
+}
+
+function renderJob(id) {
+  var j = JOB_BY_ID[id]; if (!j) return renderHome();
+  var value = '<div class="value">' + j.value.map(function (v) { return '<div>' + v + '</div>'; }).join('') + '</div>';
+  var details = j.groups.map(function (g) {
+    return '<div class="group"><h3>' + g.name + '</h3>' + g.items.map(function (i) { return '<div class="item"><b>' + i[0] + '.</b> ' + i[1] + '</div>'; }).join('') + '</div>';
+  }).join('');
+  return '<div class="crumbs"><a href="#home">Home</a> / Experience / ' + j.org + '</div>' +
+    '<p class="eyebrow">' + j.dates + ' · ' + j.where + '</p><h1>' + j.role.split(' | ')[0] + '</h1>' +
+    '<p class="lede"><b>' + j.org + '.</b> ' + j.summary + '</p>' +
+    sec('Value delivered', '', value) +
+    sec('Details', '', details) +
+    sec('Skills used', '', chipLinks(j.skills));
+}
+
+function route() {
+  var h = (location.hash || '#home').slice(1), view = document.getElementById('view');
+  if (h.indexOf('skill-') === 0) view.innerHTML = renderSkill(h.slice(6));
+  else if (h.indexOf('job-') === 0) view.innerHTML = renderJob(h.slice(4));
+  else { h = 'home'; view.innerHTML = renderHome(); }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-route]'), function (a) {
+    if (a.getAttribute('data-route') === h) a.setAttribute('aria-current', 'page'); else a.removeAttribute('aria-current');
+  });
+  if (h.indexOf('skill-') === 0) openState.skills = true;
+  if (h.indexOf('job-') === 0) openState.exp = true;
+  syncGroups();
+  document.getElementById('side').classList.remove('open');
+  document.getElementById('menuBtn').setAttribute('aria-expanded', 'false');
+  window.scrollTo(0, 0);
+}
+
+document.getElementById('menuBtn').addEventListener('click', function () {
+  var side = document.getElementById('side'), open = side.classList.toggle('open');
+  this.setAttribute('aria-expanded', open ? 'true' : 'false');
+});
+window.addEventListener('hashchange', route);
+buildNav();
+route();
+</script>
+
+</body></html>
